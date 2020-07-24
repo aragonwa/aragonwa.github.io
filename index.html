@@ -1,0 +1,41 @@
+<!DOCTYPE html`>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="test-form">
+      <div>
+        <label>Email</label>
+        <input type="email" name="email" placeholder="email" />
+      </div>
+      <div>
+        <button type="submit" id="submit-form">Submit</button>
+      </div>
+    </form>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./jquery.serialize-object.min.js"></script>
+    <script>
+      var $form = $("form#test-form"),
+        url =
+          "https://script.google.com/macros/s/AKfycbwdW_UrN0EY9_9IuoumZ__Ts9p221dZx1Mxz03m4axBG8Y_Jts/exec";
+
+      $("#submit-form").on("click", function (e) {
+        e.preventDefault();
+        var jqxhr = $.ajax({
+          url: url,
+          method: "GET",
+          dataType: "json",
+          data: $form.serializeObject(),
+          success: function () {},
+        });
+      });
+    </script>
+  </body>
+</html>
