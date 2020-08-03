@@ -110,27 +110,32 @@
           <br />
         </div>
       </div>
-      <div class="row">
-        <form id="test-form">
+      <form id="test-form">
+        <div class="form-row">
           <div class="col-sm-12">
-            <label for="notify-me-email">Email your email to get on the notification list</label>
+            <label for="notify-me-email">Submit your email to get on the notification list</label>
+            <p class="text-success d-none">Thanks for your submission!</p>
           </div>
-          <div class="form-group col-sm-6">
+        </div>
+        <div class="form-row">
+          <div class="col-sm-6">
             <div class="">
+              <div class="loader d-none">Loading...</div>
               <input type="email" name="email" class="form-control text-input" id="email"
                 aria-describedby="sign up for notifications" placeholder="Email Address" /><small id="emailHelp"
                 class="form-text">We'll only send this list notifications about the
-                site</small>
+                site.</small>
             </div>
           </div>
           <div class="col-sm-2">
+
             <button id="submit-form" type="submit" class="btn btn-primary btn-shadow">
               Notify Me
             </button>
           </div>
-        </form>
-      </div>
-
+        </div>
+      </form>
+      <br /><br />
       <p>
         Have a comment or suggestion? We'd love to hear it!
         <a href="mailto:mail@kingcounty.gov">Send feedback</a>
@@ -256,7 +261,16 @@
         method: "GET",
         dataType: "json",
         data: $form.serializeObject(),
-        success: function () { },
+        beforeSend: function () {
+          $('.loader').removeClass('d-none');
+          $('#submit-form').addClass('d-none');
+          $('#email').prop('disabled', true);
+          $('#email').addClass('d-none');
+        },
+        success: function () {
+          $('.loader').addClass('d-none');
+          $('.text-success').removeClass('d-none');
+        },
       });
     });
   </script>
