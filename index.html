@@ -268,8 +268,9 @@
           $('#email').addClass('d-none');
         },
         success: function () {
-          $('.loader').addClass('d-none');
-          $('.text-success').removeClass('d-none');
+          // $('.loader').addClass('d-none');
+          window.location.replace("/thanks.html");
+          // $('.text-success').removeClass('d-none');
         },
       });
     });
